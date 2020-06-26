@@ -18,9 +18,7 @@ public class Excersize3 {
         }
         int m = ints[0];
         for (int i : ints) {
-            if (i > m ) {
-                m = i;
-            }
+            m = Math.max(m, i);
         }
         return m;
     }
