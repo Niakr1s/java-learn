@@ -6,11 +6,11 @@ public class Exercise16 {
     public static void main(String[] args) {
         Queue q = new Queue();
         q.push("first");
-        System.out.printf("size after push = %d\n", q.size());
-        q.pop();
-        System.out.printf("size after pop from non-empty = %d\n", q.size());
-        q.pop();
-        System.out.printf("size after pop from empty = %d\n", q.size());
+        q.push("second");
+        Queue.Iterator iter = q.iterator();
+        for (int i = 0; iter.hasNext(); i++) {
+            System.out.println(i + " " + iter.next());
+        }
     }
 }
 
@@ -20,6 +20,21 @@ class Queue {
 
         Node(String v) {
             this.value = v;
+        }
+    }
+
+    public class Iterator {
+        private int nextIdx = 0;
+
+        public boolean hasNext() {
+            if (nodes.isEmpty()) {
+                return false;
+            }
+            return nextIdx < nodes.size();
+        }
+
+        public String next() {
+            return nodes.get(this.nextIdx++).value;
         }
     }
 
@@ -38,5 +53,9 @@ class Queue {
 
     public int size() {
         return nodes.size();
+    }
+
+    public Iterator iterator() {
+        return new Iterator();
     }
 }
