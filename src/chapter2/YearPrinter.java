@@ -7,42 +7,52 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class YearPrinter {
-    public static void main(String[] args) {
+    private final DayOfWeek startingDay;
+
+    public YearPrinter() {
+        this(DayOfWeek.MONDAY);
+    }
+
+    public YearPrinter(DayOfWeek startingDay) {
+        this.startingDay = startingDay;
+    }
+
+    public void printYear(int year) {
         for (int i = 1; i <= 12; i++) {
-            printMonth(1988, i);
+            printMonth(year, i);
             System.out.println();
         }
     }
 
-    static void printMonth(int year, int month) {
+    private void printMonth(int year, int month) {
         final Month currentMonth = Month.of(month);
         System.out.println(currentMonth.getDisplayName(TextStyle.FULL_STANDALONE, Locale.forLanguageTag("ru")));
         printDaysOfWeek();
         final Month nextMonth = currentMonth.plus(1);
-        LocalDate date = getPrevMonday(year, month);
-        while (!(date.getMonth() == nextMonth && date.getDayOfWeek() == DayOfWeek.MONDAY)) {
+        LocalDate date = getPrevStart(year, month);
+        while (!(date.getMonth() == nextMonth && date.getDayOfWeek() == this.startingDay)) {
             System.out.printf("%3d ", date.getDayOfMonth());
-            if (date.getDayOfWeek() == DayOfWeek.SUNDAY) {
+            if (date.getDayOfWeek() == this.startingDay.minus(1)) {
                 System.out.println();
             }
             date = date.plusDays(1);
         }
     }
 
-    static LocalDate getPrevMonday(int year, int month) {
+    private LocalDate getPrevStart(int year, int month) {
         LocalDate date = LocalDate.of(year, month, 1);
-        while (date.getDayOfWeek() != DayOfWeek.MONDAY) {
+        while (date.getDayOfWeek() != this.startingDay) {
             date = date.minusDays(1);
         }
         return date;
     }
 
-    static void printDaysOfWeek() {
-        DayOfWeek dayOfWeak = DayOfWeek.MONDAY;
+    private void printDaysOfWeek() {
+        DayOfWeek dayOfWeak = this.startingDay;
         do {
             System.out.printf("%3s ", dayOfWeak.getDisplayName(TextStyle.SHORT, Locale.forLanguageTag("ru")));
             dayOfWeak = dayOfWeak.plus(1);
-        } while (dayOfWeak != DayOfWeek.MONDAY);
+        } while (dayOfWeak != this.startingDay);
         System.out.println();
     }
 }
