@@ -6,6 +6,9 @@ public class Exercise5 {
     }
 }
 
+/**
+ * Point holds x and y coordinates. Point is immubatle.
+ */
 class Point {
     private final double x;
     private final double y;
@@ -26,7 +29,6 @@ class Point {
     public double getY() {
         return y;
     }
-
 
     public Point translate(double x, double y) {
         return new Point(this.x + x, this.y + y);

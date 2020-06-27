@@ -6,6 +6,9 @@ public class Exercise6 {
     }
 }
 
+/**
+ * MutatedPoint holds x and y coordinates. MutatedPoint is mutable.
+ */
 class MutatedPoint {
     private double x;
     private double y;
