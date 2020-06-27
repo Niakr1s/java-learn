@@ -19,4 +19,18 @@ public class IntSequence {
             }
         };
     }
+
+    public static Iterator<Integer> constant(int n) {
+        return new Iterator<Integer>() {
+            @Override
+            public boolean hasNext() {
+                return true;
+            }
+
+            @Override
+            public Integer next() {
+                return 1;
+            }
+        };
+    }
 }
