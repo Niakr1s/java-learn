@@ -2,7 +2,7 @@ package chapter2;
 
 public class Exercise5 {
     public static void main(String[] args) {
-        System.out.println(new Point(3,4).translate(1, 3).scale(0.5));
+        System.out.println(new MutatedPoint(3,4).translate(1, 3).scale(0.5));
     }
 }
 
@@ -27,12 +27,12 @@ class Point {
         return y;
     }
 
-    public Point translate(double x, double y) {
-        return new Point(this.x + x, this.y + y);
+    public MutatedPoint translate(double x, double y) {
+        return new MutatedPoint(this.x + x, this.y + y);
     }
 
-    public Point scale(double factor) {
-        return new Point(this.x * factor, this.y * factor);
+    public MutatedPoint scale(double factor) {
+        return new MutatedPoint(this.x * factor, this.y * factor);
     }
 
     public String toString() {
