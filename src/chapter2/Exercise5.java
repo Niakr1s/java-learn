@@ -27,12 +27,13 @@ class Point {
         return y;
     }
 
-    public MutatedPoint translate(double x, double y) {
-        return new MutatedPoint(this.x + x, this.y + y);
+
+    public Point translate(double x, double y) {
+        return new Point(this.x + x, this.y + y);
     }
 
-    public MutatedPoint scale(double factor) {
-        return new MutatedPoint(this.x * factor, this.y * factor);
+    public Point scale(double factor) {
+        return new Point(this.x * factor, this.y * factor);
     }
 
     public String toString() {
