@@ -3,6 +3,7 @@ package chapter3;
 public class Employee implements Measurable {
     private static int nextId = 0;
     private int id;
+
     private String name;
     private double salary;
 
@@ -24,5 +25,13 @@ public class Employee implements Measurable {
                 ", name='" + name + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
