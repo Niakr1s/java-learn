@@ -1,6 +1,6 @@
 package chapter4;
 
-public abstract class Shape {
+public abstract class Shape implements Cloneable{
     protected Point point;
 
     Shape(Point p) {
@@ -12,4 +12,11 @@ public abstract class Shape {
     }
 
     public abstract Point getCenter();
+
+    @Override
+    protected Shape clone() throws CloneNotSupportedException {
+        final Shape cloned =  (Shape) super.clone();
+        cloned.point = new Point(cloned.point);
+        return cloned;
+    }
 }

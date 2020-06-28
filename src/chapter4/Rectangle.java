@@ -15,4 +15,9 @@ public class Rectangle extends Shape {
         topLeft.move(width / 2, height / 2);
         return topLeft;
     }
+
+    @Override
+    protected Rectangle clone() throws CloneNotSupportedException {
+        return (Rectangle) super.clone();
+    }
 }

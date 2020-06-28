@@ -10,6 +10,11 @@ public class Circle extends Shape {
 
     @Override
     public Point getCenter() {
-        return point;
+        return this.point;
+    }
+
+    @Override
+    protected Circle clone() throws CloneNotSupportedException {
+        return (Circle) super.clone();
     }
 }
